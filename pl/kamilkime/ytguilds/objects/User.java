@@ -29,7 +29,7 @@ public class User {
 
 	public Rank getRank() {
 		if(this.rank !=null) return rank;
-		this.rank = new Rank();
+		this.rank = new Rank(this);
 		//TODO Format rank
 		return this.rank;
 	}
@@ -66,19 +66,21 @@ public class User {
 	}
 	
 	public boolean isInvited(Guild g){
-		//TODO Loop invited users, search for this
+		for(User u : g.getInvited()){
+			if(u.equals(this)) return true;
+		}
 		return false;
 	}
 	
 	public boolean isAdmin(){
 		if(!hasGuild()) return false;
-		//TODO
+		if(this.guild.getAdmin().equals(this)) return true;
 		return false;
 	}
 	
 	public boolean isMod(){
 		if(!hasGuild()) return false;
-		//TODO
+		if(this.guild.getMods().contains(this)) return true;
 		return false;
 	}
 	
