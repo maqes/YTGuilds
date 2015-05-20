@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import pl.kamilkime.ytguilds.objects.utils.ChatType;
+import pl.kamilkime.ytguilds.objects.utils.RankUtils;
 import pl.kamilkime.ytguilds.objects.utils.UserUtils;
 
 public class User {
@@ -16,7 +17,7 @@ public class User {
 	private User(String name){
 		this.name = name;
 		UserUtils.addUser(this);
-		//TODO RankUtils.addUser(this);
+		RankUtils.update(this);
 	}
 	
 	public String getName() {
@@ -30,7 +31,9 @@ public class User {
 	public Rank getRank() {
 		if(this.rank !=null) return rank;
 		this.rank = new Rank(this);
-		//TODO Format rank
+		this.rank.setKills(0);
+		this.rank.setDeaths(0);
+		this.rank.setRank(1000);
 		return this.rank;
 	}
 
