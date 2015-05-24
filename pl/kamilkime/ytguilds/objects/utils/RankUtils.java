@@ -47,7 +47,7 @@ public class RankUtils {
 		updateAll();
 	}
 	
-	public void removeRank(Rank r){
+	public static void removeRank(Rank r){
 		if(r.getType().equals(RankType.USER)){
 			users.remove(r);
 		}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.kamilkime.ytguilds.objects.utils.GuildUtils;
+import pl.kamilkime.ytguilds.objects.utils.RankUtils;
 
 public class Guild {
 
@@ -30,6 +31,20 @@ public class Guild {
 			if(g.getTag().equalsIgnoreCase(tag)) return g;
 		}
 		return new Guild(tag);
+	}
+	
+	public void delete(){
+		GuildUtils.removeGuild(this);
+		for(User u : getMembers()) u.setGuild(null);
+		region.delete();
+		for(Guild g : getAllies()) g.removeAlly(this);
+		for(Guild g : getEnemies()) g.removeEnemy(this);
+		for(Guild g : GuildUtils.getGuils()){
+			if(g.getAllyInvs().contains(this)) g.removeAllyInv(this);
+			if(g.getNeutralInvs().contains(this)) g.removeNeutralInv(this);
+		}
+		RankUtils.removeRank(getRank());
+		//TODO remove file
 	}
 	
 	public boolean hasRegion(){
@@ -149,7 +164,6 @@ public class Guild {
 		if(this.members == null) this.members = new ArrayList<User>();
 		this.members.add(u);
 		u.setGuild(this);
-		//TODO Add to region
 	}
 	
 	public void addMod(User u){
@@ -184,7 +198,6 @@ public class Guild {
 	public void removeMember(User u){
 		this.members.remove(u);
 		u.setGuild(null);
-		//TODO Remove from region
 	}
 	
 	public void removeMod(User u){
