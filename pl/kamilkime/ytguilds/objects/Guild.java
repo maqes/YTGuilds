@@ -27,7 +27,7 @@ public class Guild {
 	}
 	
 	public static Guild get(String tag){
-		for(Guild g : GuildUtils.getGuils()){
+		for(Guild g : GuildUtils.getGuilds()){
 			if(g.getTag().equalsIgnoreCase(tag)) return g;
 		}
 		return new Guild(tag);
@@ -39,7 +39,7 @@ public class Guild {
 		region.delete();
 		for(Guild g : getAllies()) g.removeAlly(this);
 		for(Guild g : getEnemies()) g.removeEnemy(this);
-		for(Guild g : GuildUtils.getGuils()){
+		for(Guild g : GuildUtils.getGuilds()){
 			if(g.getAllyInvs().contains(this)) g.removeAllyInv(this);
 			if(g.getNeutralInvs().contains(this)) g.removeNeutralInv(this);
 		}

@@ -10,7 +10,7 @@ public class GuildUtils {
 
 	private static List<Guild> guilds = new ArrayList<Guild>();
 	
-	public static List<Guild> getGuils(){
+	public static List<Guild> getGuilds(){
 		return new ArrayList<Guild>(guilds);
 	}
 	
@@ -27,9 +27,7 @@ public class GuildUtils {
 	public static Guild getPlayerGuild(String name){
 		for(Guild g : guilds){
 			for(User u : g.getMembers()){
-				if(u.getName().equalsIgnoreCase(name)){
-					return g;
-				}
+				if(u.getName().equalsIgnoreCase(name)) return g;
 			}
 		}
 		return null;

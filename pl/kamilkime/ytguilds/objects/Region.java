@@ -24,6 +24,7 @@ public class Region {
 		this.name = guild.getTag();
 		this.center = center;
 		this.size = size;
+		RegionUtils.addRegion(this);
 		reCalculate();
 	}
 	

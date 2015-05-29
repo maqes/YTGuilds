@@ -2,6 +2,7 @@ package pl.kamilkime.ytguilds.objects.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import pl.kamilkime.ytguilds.objects.User;
 
@@ -25,6 +26,13 @@ public class UserUtils {
 	public static boolean playedBefore(String name){
 		for(User u : users){
 			if(u.getName().equalsIgnoreCase(name)) return true;
+		}
+		return false;
+	}
+	
+	public static boolean playedBefore(UUID uuid){
+		for(User u : users){
+			if(u.getUUID().equals(uuid)) return true;
 		}
 		return false;
 	}
