@@ -1,10 +1,12 @@
 package pl.kamilkime.ytguilds.objects;
 
+import java.io.File;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import pl.kamilkime.ytguilds.data.FileManager;
 import pl.kamilkime.ytguilds.objects.utils.ChatType;
 import pl.kamilkime.ytguilds.objects.utils.RankUtils;
 import pl.kamilkime.ytguilds.objects.utils.UserUtils;
@@ -117,7 +119,12 @@ public class User {
 		for(User u : UserUtils.getUsers()){
 			if(u.getName().equalsIgnoreCase(p.getName())) return u;
 			if(u.getUUID().equals(p.getUniqueId())){
-				//TODO Remove file
+				if(!u.getName().equalsIgnoreCase(p.getName())){
+					if(new File(FileManager.getUsersFolder(), u.getName() + ".yml").exists()){
+						new File(FileManager.getUsersFolder(), u.getName() + ".yml").delete();
+					}
+					u.setName(p.getName());
+				}
 				return u;
 			}
 		}

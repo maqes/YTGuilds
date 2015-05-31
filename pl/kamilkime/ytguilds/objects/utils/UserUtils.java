@@ -37,5 +37,15 @@ public class UserUtils {
 		return false;
 	}
 	
-	//TODO toNames(), fromNames()
+	public static List<String> toNames(List<User> users){
+		List<String> names = new ArrayList<String>();
+		for(User u : users) names.add(u.getName());
+		return names;
+	}
+	
+	public static List<User> fromNames(List<String> names){
+		List<User> users = new ArrayList<User>();
+		for(String s : names) users.add(User.get(s));
+		return users;
+	}
 }

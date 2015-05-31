@@ -22,7 +22,17 @@ public class GuildUtils {
 		if(guilds.contains(u)) guilds.remove(u);
 	}
 	
-	//TODO toTags(), fromTags()
+	public static List<String> toTags(List<Guild> guilds){
+		List<String> tags = new ArrayList<String>();
+		for(Guild g : guilds) tags.add(g.getTag());
+		return tags;
+	}
+	
+	public static List<Guild> fromTags(List<String> tags){
+		List<Guild> guilds = new ArrayList<Guild>();
+		for(String s : tags) guilds.add(Guild.get(s));
+		return guilds;
+	}
 	
 	public static Guild getPlayerGuild(String name){
 		for(Guild g : guilds){
