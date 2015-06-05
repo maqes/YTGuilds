@@ -119,8 +119,8 @@ public class DataManager {
 			YamlConfiguration yml = YamlConfiguration.loadConfiguration(f);
 			Region r = Region.get(yml.getString("name"));
 			r.setGuild(Guild.get(yml.getString("guild")));
-			r.setSize(yml.getInt("size"));
 			r.setCenter(fromString(yml.getString("center")));
+			r.setSize(yml.getInt("size"));
 			r.setLowerLoc(fromString(yml.getString("lowerLoc")));
 			r.setUpperLoc(fromString(yml.getString("upperLoc")));
 			loaded++;
